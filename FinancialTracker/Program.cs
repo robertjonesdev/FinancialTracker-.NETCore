@@ -1,4 +1,12 @@
+using FinancialTracker.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var conn = builder.Configuration.GetConnectionString("TrackerDbConnection");
+builder.Services.AddDbContext<TrackerDbContext>(options => {
+    options.UseSqlServer(conn);
+});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
